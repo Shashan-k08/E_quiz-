@@ -9,6 +9,10 @@ const Question1 = ({ onNextPage }) => {
     setSelectedOption(option);
   };
 
+  const moveToNextQuestion = () => {
+    onNextPage(true); // Move to the next question
+  };
+
   const checkAnswer = () => {
     if (selectedOption === 'Green') {
       onNextPage(true); // Move to the next question if the answer is correct
@@ -63,10 +67,11 @@ const Question1 = ({ onNextPage }) => {
           Green
         </label>
       </form>
-      {showCorrectAnswer && <p>The correct answer is: Green</p>}
-      <button onClick={checkAnswer} disabled={showCorrectAnswer}>
-        {showCorrectAnswer ? 'Next' : 'Check Answer'}
+      {showCorrectAnswer && <p>Correct answer :<h7>Green</h7> </p>}
+     <button onClick={checkAnswer} disabled={showCorrectAnswer}>
+        {showCorrectAnswer ? 'Next' : 'Submit'}
       </button>
+      
     </div>
   );
 };

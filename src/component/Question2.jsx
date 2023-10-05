@@ -1,4 +1,4 @@
-// Question2.js
+
 import React, { useState } from 'react';
 
 const Question2 = ({ onNextPage }) => {
@@ -9,11 +9,14 @@ const Question2 = ({ onNextPage }) => {
     setSelectedOption(option);
   };
 
+  const moveToNextQuestion = () => {
+    onNextPage(true);
+  };
   const checkAnswer = () => {
     if (selectedOption === 'BJP') {
-      onNextPage(true); // Move to the next question if the answer is correct
+      onNextPage(true); 
     } else {
-      setShowCorrectAnswer(true); // Display the correct answer
+      setShowCorrectAnswer(true); 
     }
   };
 
@@ -63,9 +66,9 @@ const Question2 = ({ onNextPage }) => {
           SP
         </label>
       </form>
-      {showCorrectAnswer && <p>The correct answer is: BJP</p>}
+      {showCorrectAnswer && <p> Correct answer :<h7> BJP</h7></p>}
       <button onClick={checkAnswer} disabled={showCorrectAnswer}>
-        {showCorrectAnswer ? 'Next' : 'Check Answer'}
+        {showCorrectAnswer ? 'Next' : 'Submit'}
       </button>
     </div>
   );

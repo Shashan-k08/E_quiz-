@@ -17,13 +17,13 @@ function App() {
     // Move to the next question or display the result
     if (page === 1) {
       setPage(2);
-    } else {
-      setPage(3);
+    } else if (page === 2) {
+      setPage(score === 1 ? 3 : 4); // Go to result page if score is 1, otherwise, go to the next question
     }
   };
-
   return (
-    <div className="App">
+    <div className="container">
+      <h3 className='heading'> OVS<p>Quiz</p></h3>
       {page === 1 && <Question1 onNextPage={handleNextPage} />}
       {page === 2 && <Question2 onNextPage={handleNextPage} />}
       {page === 3 && <Result score={score} />}
