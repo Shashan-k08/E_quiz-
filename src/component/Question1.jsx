@@ -3,16 +3,17 @@ import React, { useState } from 'react';
 
 const Question1 = ({ onNextPage }) => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
 
-  const handleAnswerClick = (option) => {
+  const handleAnswerChange = (option) => {
     setSelectedOption(option);
   };
 
   const checkAnswer = () => {
     if (selectedOption === 'Green') {
-      onNextPage(true);
+      onNextPage(true); // Move to the next question if the answer is correct
     } else {
-      onNextPage(false);
+      setShowCorrectAnswer(true); // Display the correct answer
     }
   };
 
@@ -20,13 +21,52 @@ const Question1 = ({ onNextPage }) => {
     <div className="question-container">
       <h2>Question 1</h2>
       <p>What is the colour of Leaf?</p>
-      <ul>
-        <li onClick={() => handleAnswerClick('Red')}>Red</li>
-        <li onClick={() => handleAnswerClick('White')}>White</li>
-        <li onClick={() => handleAnswerClick('Brown')}>Brown</li>
-        <li onClick={() => handleAnswerClick('Green')}>Green</li>
-      </ul>
-      <button onClick={checkAnswer}>Next</button>
+      <form>
+        <label>
+          <input
+            type="radio"
+            value="Red"
+            checked={selectedOption === 'Red'}
+            onChange={() => handleAnswerChange('Red')}
+            disabled={showCorrectAnswer}
+          />
+          Red
+        </label>
+        <label>
+          <input
+            type="radio"
+            value="White"
+            checked={selectedOption === 'White'}
+            onChange={() => handleAnswerChange('White')}
+            disabled={showCorrectAnswer}
+          />
+          White
+        </label>
+        <label>
+          <input
+            type="radio"
+            value="Brown"
+            checked={selectedOption === 'Brown'}
+            onChange={() => handleAnswerChange('Brown')}
+            disabled={showCorrectAnswer}
+          />
+          Brown
+        </label>
+        <label>
+          <input
+            type="radio"
+            value="Green"
+            checked={selectedOption === 'Green'}
+            onChange={() => handleAnswerChange('Green')}
+            disabled={showCorrectAnswer}
+          />
+          Green
+        </label>
+      </form>
+      {showCorrectAnswer && <p>The correct answer is: Green</p>}
+      <button onClick={checkAnswer} disabled={showCorrectAnswer}>
+        {showCorrectAnswer ? 'Next' : 'Check Answer'}
+      </button>
     </div>
   );
 };
