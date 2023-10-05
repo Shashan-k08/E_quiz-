@@ -6,16 +6,19 @@ import Question2 from './component/Question2';
 import Result from './component/Result';
 
 function App() {
-  const [page, setPage] = useState(1); // Start with the first question
+  const [page, setPage] = useState(1);
   const [score, setScore] = useState(0);
 
   const handleNextPage = (isCorrect) => {
-    if (page === 1 && isCorrect) {
-      // Move to the second question if the first question is answered correctly
+    if (isCorrect) {
+      setScore(score + 1); // Increment the score if the answer is correct
+    }
+
+    // Move to the next question or display the result
+    if (page === 1) {
       setPage(2);
     } else {
-      setScore(isCorrect ? 1 : 0);
-      setPage(3); // Display result page
+      setPage(3);
     }
   };
 
